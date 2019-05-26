@@ -148,6 +148,8 @@ elem_input.onkeyup=function(){
 		return;
 	}
 
+	document.title='aCAL: "'+query+'"';
+
 	last_query=query;
 	xhr.abort();
 
