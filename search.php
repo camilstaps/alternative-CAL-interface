@@ -1,5 +1,4 @@
 <?php
-define ('CAL_BASE_URL','http://cal.huc.edu/');
 define ('CAL_REQUEST_URL','http://cal.huc.edu/browseheaders.php');
 
 $query=$_GET['q'];
@@ -39,7 +38,7 @@ foreach ($curl_response as $curl_result) {
 	if ($url=='')
 		continue;
 
-	$result=['url' => CAL_BASE_URL.$url];
+	$result=['url' => $url];
 
 	// PoS: can more than one element be present?
 	$pos_nodes=$curl_result->getElementsByTagName ('pos');

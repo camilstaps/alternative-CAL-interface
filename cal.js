@@ -19,8 +19,33 @@ elem_help_icon.onclick=function(){
 	}
 };
 
+function handle_click () {
+	const result_node=this;
+
+	switch (result_node.dataset.has_iframe) {
+		case 'no':
+			const iframe=document.createElement ('iframe');
+			iframe.src='/proxy/'+result_node.dataset.url;
+
+			if (result_node.nextSibling)
+				result_node.parentNode.insertBefore (iframe,result_node.nextSibling)
+			else
+				result_node.parentNode.appendChild (iframe);
+
+		case 'hidden':
+			result_node.nextSibling.style.display='block';
+			result_node.dataset.has_iframe='shown';
+			break;
+
+		case 'shown':
+			result_node.nextSibling.style.display='none';
+			result_node.dataset.has_iframe='hidden';
+			break;
+	}
+}
+
 var last_query='';
-var xhr=new XMLHttpRequest ();
+const xhr=new XMLHttpRequest ();
 
 xhr.onreadystatechange=function(){
 	if (xhr.readyState!=4)
@@ -46,10 +71,11 @@ xhr.onreadystatechange=function(){
 	for (var i in response) {
 		const result=response[i];
 
-		const result_node=document.createElement ('a');
+		const result_node=document.createElement ('div');
+		result_node.dataset.url=result.url;
+		result_node.dataset.has_iframe='no';
 		result_node.classList.add ('result');
-		result_node.href=result.url;
-		result_node.target='_blank';
+		result_node.onclick=handle_click;
 
 		if ('expected_query' in result) {
 			const uni_node=document.createElement ('span');
@@ -77,6 +103,15 @@ xhr.onreadystatechange=function(){
 		pos_node.innerHTML+=')';
 		pos_node.classList.add ('pos');
 		result_node.appendChild (pos_node);
+
+		const external_entry_node=document.createElement ('a');
+		external_entry_node.innerHTML='&#10154;';
+		external_entry_node.href='http://cal.huc.edu/'+result.url;
+		external_entry_node.target='_blank';
+		external_entry_node.title='View entry on the original CAL';
+		external_entry_node.classList.add ('external-entry');
+		external_entry_node.onclick=function(e){ e.stopPropagation(); };
+		result_node.appendChild (external_entry_node);
 
 		const br_node=document.createElement ('br');
 		result_node.appendChild (br_node);

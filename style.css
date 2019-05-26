@@ -96,6 +96,7 @@ div#results {
 .result {
 	background: #f0f0f0;
 	color: inherit;
+	cursor: pointer;
 	display: block;
 	line-height: 1.5em;
 	margin-top: .2em;
@@ -117,8 +118,24 @@ div#results {
 	margin-left: 1em;
 }
 
+.result > .external-entry {
+	color: #333;
+	display: inline-block;
+	float: right;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	width: 1.5em;
+}
+
 .result > .gloss {
 	color: #00a;
+}
+
+div#results iframe {
+	border: 0;
+	height: 400px;
+	width: 100%;
 }
 
 div#error {
