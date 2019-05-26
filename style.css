@@ -89,18 +89,26 @@ div#loading {
 	text-align: center;
 }
 
+div#results {
+	margin-top: 1em;
+}
+
 .result {
 	background: #f0f0f0;
 	color: inherit;
 	display: block;
-	line-height: 2em;
-	margin-top: .5em;
+	line-height: 1.5em;
+	margin-top: .2em;
 	padding: .5em;
 	text-decoration: none;
 }
 
 .result > .uni {
 	color: #888;
+}
+
+.result > .lemma {
+	font-weight: bold;
 }
 
 .result > .pos {
@@ -110,7 +118,7 @@ div#loading {
 }
 
 .result > .gloss {
-	float: right;
+	color: #00a;
 }
 
 div#error {

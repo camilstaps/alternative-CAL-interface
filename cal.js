@@ -68,14 +68,13 @@ xhr.onreadystatechange=function(){
 		pos_node.classList.add ('pos');
 		result_node.appendChild (pos_node);
 
+		const br_node=document.createElement ('br');
+		result_node.appendChild (br_node);
+
 		const gloss_node=document.createElement ('span');
 		gloss_node.innerHTML=result.gloss;
 		gloss_node.classList.add ('gloss');
 		result_node.appendChild (gloss_node);
-
-		const br_node=document.createElement ('br');
-		br_node.style.clear='both';
-		result_node.appendChild (br_node);
 
 		elem_results.appendChild (result_node);
 	}
