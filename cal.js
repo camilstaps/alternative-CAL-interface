@@ -51,9 +51,9 @@ xhr.onreadystatechange=function(){
 		result_node.href=result.url;
 		result_node.target='_blank';
 
-		if ('extra' in result && 'uni' in result.extra) {
+		if ('expected_query' in result) {
 			const uni_node=document.createElement ('span');
-			uni_node.innerHTML=result.extra.uni+' &rightarrow; ';
+			uni_node.innerHTML=result.expected_query+' &rightarrow; ';
 			uni_node.classList.add ('uni');
 			result_node.appendChild (uni_node);
 		}
@@ -63,8 +63,18 @@ xhr.onreadystatechange=function(){
 		lemma_node.classList.add ('lemma');
 		result_node.appendChild (lemma_node);
 
+		if ('vocalization' in result) {
+			const voc_node=document.createElement ('span');
+			voc_node.innerHTML=result.vocalization;
+			voc_node.classList.add ('vocalization');
+			result_node.appendChild (voc_node);
+		}
+
 		const pos_node=document.createElement ('span');
-		pos_node.innerHTML='('+result.pos+')';
+		pos_node.innerHTML='('+result.pos;
+		if ('homonymous_index' in result)
+			pos_node.innerHTML+=' '+result.homonymous_index;
+		pos_node.innerHTML+=')';
 		pos_node.classList.add ('pos');
 		result_node.appendChild (pos_node);
 

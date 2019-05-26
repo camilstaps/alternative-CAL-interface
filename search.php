@@ -1,9 +1,11 @@
 <?php
 define ('CAL_BASE_URL','http://cal.huc.edu/');
 define ('CAL_REQUEST_URL','http://cal.huc.edu/browseheaders.php');
+
 $query=$_GET['q'];
 
 $response=[];
+header ('Content-Type: application/json');
 
 // Make curl request
 $curl_fields=['first3' => $query];
@@ -41,10 +43,14 @@ foreach ($curl_response as $curl_result) {
 
 	// PoS: can more than one element be present?
 	$pos_nodes=$curl_result->getElementsByTagName ('pos');
-	$poss=[];
-	foreach ($pos_nodes as $pos_node)
-		$poss[]=$pos_node->nodeValue;
-	$result['pos']=implode ('; ',$poss);
+	if (count ($pos_nodes)>0) {
+		$pos_node=$pos_nodes[0];
+		$result['pos']=$pos_node->nodeValue;
+
+		// #2 / #3 for homonyms appears next to pos
+		if (!is_null ($pos_node->nextSibling))
+			$result['homonymous_index']=$pos_node->nextSibling->nodeValue;
+	}
 
 	// Other information
 	$spans=$curl_result->getElementsByTagName ('span');
@@ -57,6 +63,13 @@ foreach ($curl_response as $curl_result) {
 			break;
 		case 'gloss':
 			$result['gloss']=trim ($span->nodeValue);
+			break;
+		case 'uni':
+			if (is_null ($span->previousSibling))
+				$result['expected_query']=$span->nodeValue;
+			else
+				// Probably vocalization, though perhaps uni is used in more cases?
+				$result['vocalization']=$span->nodeValue;
 			break;
 		default:
 			$result['extra'][$cls]=$span->nodeValue;
