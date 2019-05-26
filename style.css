@@ -19,9 +19,20 @@ a#header {
 div#main {
 	background: #e0e0e0;
 	border-radius: .4em;
+	box-sizing: border-box;
 	margin: 0 auto 3em;
-	max-width: 40em;
 	padding: 1em;
+	width: 100%;
+}
+
+@media (min-width: 35em) {
+	div#main {
+		min-width: 30em;
+		max-width: 95%;
+		overflow: auto;
+		resize: horizontal;
+		width: 35em;
+	}
 }
 
 div#form {
