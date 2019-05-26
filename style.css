@@ -54,6 +54,10 @@ div#help {
 	margin-bottom: 1em;
 }
 
+div#charsets-container {
+	overflow: auto;
+}
+
 table#charsets {
 	background: #f0f0f0;
 	margin: 0 auto;
