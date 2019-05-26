@@ -48,14 +48,15 @@ function handle_click () {
 var last_query='';
 
 function handle_response(response) {
+	elem_loading.style.display='none';
+	elem_results.innerHTML='';
+
 	if (response.length==0) {
 		elem_error.innerHTML='No results for "'+last_query+'"';
 		elem_error.style.display='block';
 		return;
 	}
 
-	elem_results.innerHTML='';
-	elem_loading.style.display='none';
 	elem_error.style.display='none';
 
 	for (var i in response) {
