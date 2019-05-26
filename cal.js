@@ -55,6 +55,7 @@ function handle_response(response) {
 	}
 
 	elem_results.innerHTML='';
+	elem_loading.style.display='none';
 	elem_error.style.display='none';
 
 	for (var i in response) {
