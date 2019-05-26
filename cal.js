@@ -45,8 +45,6 @@ function handle_click () {
 }
 
 var last_query='';
-const xhr=new XMLHttpRequest ();
-const cache=new Map();
 
 function handle_response(response) {
 	if (response.length==0) {
@@ -56,6 +54,7 @@ function handle_response(response) {
 	}
 
 	elem_results.innerHTML='';
+	elem_error.style.display='none';
 
 	for (var i in response) {
 		const result=response[i];
@@ -114,14 +113,16 @@ function handle_response(response) {
 	}
 }
 
+const cache=new Map();
+
+const xhr=new XMLHttpRequest ();
 xhr.onreadystatechange=function(){
 	if (xhr.readyState!=4)
 		return;
 
-	elem_loading.style.display='none';
-	elem_results.innerHTML='';
-
 	if (xhr.status!=200) {
+		elem_loading.style.display='none';
+		elem_results.innerHTML='';
 		elem_error.innerHTML='Failed to fetch results: '+xhr.statusText;
 		elem_error.style.display='block';
 		return;
