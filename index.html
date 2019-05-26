@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Alternative CAL Interface</title>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/style.css" type="text/css">
+	<script src="/cal.js" defer="true"></script>
+</head>
+<body>
+	<a id="header" href="https://github.com/camilstaps/alternative-CAL-interface" target="_blank" title="More information about the alternative CAL interface">aCAL</a>
+	<div id="main">
+		<div id="form">
+			<input type="text" id="search" placeholder="Enter search term" autofocus="on" autocomplete="off" autocapitalize="off" autocorrect="off">
+			<span id="help-icon" title="Toggle help text">?</span>
+		</div>
+		<div id="help">
+			<p>
+				This is an alternative interface to the <a href="http://cal.huc.edu/" target="_blank">Comprehensive Aramaic Lexicon</a>.
+				As in the original interface, enter the first two to six letters of the entry you wish to look up.
+				Search happens automatically when entering a query.
+			</p>
+			<p>
+				This website is in no way affiliated with the Comprehensive Aramaic Lexicon.
+				All data remains &copy; The Comprehensive Aramaic Lexicon.
+				See <a href="https://github.com/camilstaps/alternative-CAL-interface" target="_blank">GitHub</a> for more information.
+			</p>
+			<p>Use any of the following character sets to search:</p>
+			<table id="charsets">
+				<tr>
+					<td>CAL Code</td>
+					<td>)</td>
+					<td>b</td>
+					<td>g</td>
+					<td>d</td>
+					<td>h</td>
+					<td>w</td>
+					<td>z</td>
+					<td>x</td>
+					<td>T</td>
+					<td>y</td>
+					<td>k</td>
+					<td>l</td>
+					<td>m</td>
+					<td>n</td>
+					<td>s</td>
+					<td>(</td>
+					<td>p</td>
+					<td>P</td>
+					<td>c</td>
+					<td>q</td>
+					<td>r</td>
+					<td>$</td>
+					<td>&amp;</td>
+					<td>t</td>
+					<td>@</td>
+				</tr>
+				<tr>
+					<td>Unicode</td>
+					<td>ˀ</td>
+					<td>b</td>
+					<td>g</td>
+					<td>d</td>
+					<td>h</td>
+					<td>w</td>
+					<td>z</td>
+					<td>ḥ</td>
+					<td>ṭ</td>
+					<td>y</td>
+					<td>k</td>
+					<td>l</td>
+					<td>m</td>
+					<td>n</td>
+					<td>s</td>
+					<td>ˁ</td>
+					<td>p</td>
+					<td>ṗ</td>
+					<td>ṣ</td>
+					<td>q</td>
+					<td>r</td>
+					<td>š</td>
+					<td>ś</td>
+					<td>t</td>
+					<td>*</td>
+				</tr>
+				<tr>
+					<td>Hebrew</td>
+					<td>א</td>
+					<td>ב</td>
+					<td>ג</td>
+					<td>ד</td>
+					<td>ה</td>
+					<td>ו</td>
+					<td>ז</td>
+					<td>ח</td>
+					<td>ט</td>
+					<td>י</td>
+					<td>כ</td>
+					<td>ל</td>
+					<td>מ</td>
+					<td>נ</td>
+					<td>ס</td>
+					<td>ע</td>
+					<td>פ</td>
+					<td>&nbsp;</td>
+					<td>צ</td>
+					<td>ק</td>
+					<td>ר</td>
+					<td>ש</td>
+					<td>שׂ</td>
+					<td>ת</td>
+					<td>*</td>
+				</tr>
+				<tr>
+					<td>Syriac</td>
+					<td class="syr">ܐ</td>
+					<td class="syr">ܒ</td>
+					<td class="syr">ܓ</td>
+					<td class="syr">ܕ</td>
+					<td class="syr">ܗ</td>
+					<td class="syr">ܘ</td>
+					<td class="syr">ܙ</td>
+					<td class="syr">ܚ</td>
+					<td class="syr">ܛ</td>
+					<td class="syr">ܝ</td>
+					<td class="syr">ܟ</td>
+					<td class="syr">ܠ</td>
+					<td class="syr">ܡ</td>
+					<td class="syr">ܢ</td>
+					<td class="syr">ܣ</td>
+					<td class="syr">ܥ</td>
+					<td class="syr">ܦ</td>
+					<td class="syr">ܧ</td>
+					<td class="syr">ܨ</td>
+					<td class="syr">ܩ</td>
+					<td class="syr">ܪ</td>
+					<td class="syr">ܫ</td>
+					<td class="syr">&nbsp; </td>
+					<td class="syr">ܬ</td>
+					<td>*</td>
+				</tr>
+			</table>
+			</table>
+		</div>
+		<div id="loading">
+			<img src="/loading.gif" alt="loading...">
+		</div>
+		<div id="results"></div>
+		<div id="error"></div>
+		<div id="copyright">
+			All data is &copy; The Comprehensive Aramaic Lexicon.
+		</div>
+	</div>
+</body>
+</html>

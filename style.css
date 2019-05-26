@@ -1,0 +1,113 @@
+.syr {
+	font-family: 'Estrangelo Edessa';
+}
+
+a#header {
+	color: #666;
+	font-size: 150%;
+	display: block;
+	margin: .5em 0;
+	padding: .5em;
+	text-align: center;
+	text-decoration: none;
+}
+
+div#main {
+	background: #e0e0e0;
+	border-radius: .4em;
+	margin: 0 auto 3em;
+	max-width: 40em;
+	padding: 1em;
+}
+
+div#form {
+	position: relative;
+}
+
+input#search {
+	border: 1px solid #c0c0c0;
+	border-radius: 0;
+	box-sizing: border-box;
+	font-size: 120%;
+	padding: .3em .5em;
+	width: 100%;
+}
+
+span#help-icon {
+	border: 1px solid #333;
+	border-radius: 1em;
+	color: #333;
+	cursor: pointer;
+	font-size: 80%;
+	height: 1.5em;
+	line-height: 1.5em;
+	position: absolute;
+	right: 1em;
+	text-align: center;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 1.5em;
+}
+
+div#help {
+	display: none;
+	margin-bottom: 1em;
+}
+
+table#charsets {
+	background: #f0f0f0;
+	margin: 0 auto;
+	padding: .5em;
+}
+
+table#charsets td {
+	padding: .15em .2em;
+	text-align: center;
+}
+
+table#charsets td:first-child {
+	padding: .15em;
+	text-align: left;
+}
+
+div#loading {
+	display: none;
+	margin: 2em 0 1em;
+	text-align: center;
+}
+
+.result {
+	background: #f0f0f0;
+	color: inherit;
+	display: block;
+	line-height: 2em;
+	margin-top: .5em;
+	padding: .5em;
+	text-decoration: none;
+}
+
+.result > .uni {
+	color: #888;
+}
+
+.result > .pos {
+	color: #888;
+	font-size: 80%;
+	margin-left: 1em;
+}
+
+.result > .gloss {
+	float: right;
+}
+
+div#error {
+	display: none;
+	margin-top: 1em;
+}
+
+div#copyright {
+	color: #888;
+	font-size: 80%;
+	margin-top: 1em;
+	text-align: center;
+}
