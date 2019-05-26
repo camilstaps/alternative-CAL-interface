@@ -44,11 +44,11 @@ foreach ($curl_response as $curl_result) {
 	$pos_nodes=$curl_result->getElementsByTagName ('pos');
 	if (count ($pos_nodes)>0) {
 		$pos_node=$pos_nodes[0];
-		$result['pos']=$pos_node->nodeValue;
+		$result['pos']=trim ($pos_node->nodeValue);
 
 		// #2 / #3 for homonyms appears next to pos
 		if (!is_null ($pos_node->nextSibling))
-			$result['homonymous_index']=$pos_node->nextSibling->nodeValue;
+			$result['homonymous_index']=trim ($pos_node->nextSibling->nodeValue);
 	}
 
 	// Other information
@@ -58,24 +58,24 @@ foreach ($curl_response as $curl_result) {
 		switch ($cls) {
 		case 'biglem':
 		case 'lem':
-			$result['lemma']=$span->nodeValue;
+			$result['lemma']=trim ($span->nodeValue);
 			break;
 		case 'gloss':
 			$result['gloss']=trim ($span->nodeValue);
 			break;
 		case 'uni':
 			if (is_null ($span->previousSibling))
-				$result['expected_query']=$span->nodeValue;
+				$result['expected_query']=trim ($span->nodeValue);
 			else
 				// Probably vocalization, though perhaps uni is used in more cases?
-				$result['vocalization']=$span->nodeValue;
+				$result['vocalization']=trim ($span->nodeValue);
 			break;
 		default:
-			$result['extra'][$cls]=$span->nodeValue;
+			$result['extra'][$cls]=trim ($span->nodeValue);
 		}
 	}
 
 	$response[]=$result;
 }
 
-echo json_encode($response);
+echo json_encode ($response);
