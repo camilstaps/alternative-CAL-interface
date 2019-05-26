@@ -10,7 +10,13 @@ const elem_error=document.getElementById ('error');
 var help_shown=false;
 elem_help_icon.onclick=function(){
 	help_shown=!help_shown;
-	elem_help.style.display=help_shown ? 'block' : 'none';
+	if (help_shown) {
+		elem_help.style.display='block';
+		elem_help_icon.classList.add ('active');
+	} else {
+		elem_help.style.display='none';
+		elem_help_icon.classList.remove ('active');
+	}
 };
 
 var last_query='';

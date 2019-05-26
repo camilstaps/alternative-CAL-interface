@@ -52,6 +52,11 @@ span#help-icon {
 	transform: translateY(-50%);
 	width: 1.5em;
 }
+span#help-icon.active {
+	background: #888;
+	border-color: #888;
+	color: #fff;
+}
 
 div#help {
 	display: none;
