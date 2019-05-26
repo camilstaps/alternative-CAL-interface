@@ -46,27 +46,16 @@ function handle_click () {
 
 var last_query='';
 const xhr=new XMLHttpRequest ();
+const cache=new Map();
 
-xhr.onreadystatechange=function(){
-	if (xhr.readyState!=4)
-		return;
-
-	elem_loading.style.display='none';
-	elem_results.innerHTML='';
-
-	if (xhr.status!=200) {
-		elem_error.innerHTML='Failed to fetch results: '+xhr.statusText;
-		elem_error.style.display='block';
-		return;
-	}
-
-	const response=JSON.parse(xhr.responseText);
-
+function handle_response(response) {
 	if (response.length==0) {
 		elem_error.innerHTML='No results for "'+last_query+'"';
 		elem_error.style.display='block';
 		return;
 	}
+
+	elem_results.innerHTML='';
 
 	for (var i in response) {
 		const result=response[i];
@@ -123,6 +112,24 @@ xhr.onreadystatechange=function(){
 
 		elem_results.appendChild (result_node);
 	}
+}
+
+xhr.onreadystatechange=function(){
+	if (xhr.readyState!=4)
+		return;
+
+	elem_loading.style.display='none';
+	elem_results.innerHTML='';
+
+	if (xhr.status!=200) {
+		elem_error.innerHTML='Failed to fetch results: '+xhr.statusText;
+		elem_error.style.display='block';
+		return;
+	}
+
+	const response=JSON.parse (xhr.responseText);
+	handle_response (response);
+	cache.set (last_query,response);
 };
 
 elem_input.onkeyup=function(){
@@ -130,7 +137,6 @@ elem_input.onkeyup=function(){
 
 	if (query==last_query)
 		return;
-	last_query=query;
 
 	if (query.length<2) {
 		elem_results.innerHTML='';
@@ -139,7 +145,15 @@ elem_input.onkeyup=function(){
 		return;
 	}
 
+	last_query=query;
 	xhr.abort();
+
+	if (cache.has (query)) {
+		console.log('cache',query);
+		handle_response (cache.get (query));
+		return;
+	}
+
 	xhr.open ('GET','search.php?q='+encodeURIComponent (query));
 	elem_loading.style.display='block';
 	elem_error.innerHTML='';
