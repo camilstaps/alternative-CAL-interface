@@ -149,3 +149,7 @@ div#copyright {
 	margin-top: 1em;
 	text-align: center;
 }
+
+div#copyright a {
+	color: inherit;
+}
