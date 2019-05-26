@@ -1,5 +1,6 @@
 "use strict";
 
+const elem_main=document.getElementById ('main');
 const elem_input=document.getElementById ('search');
 const elem_help_icon=document.getElementById ('help-icon');
 const elem_help=document.getElementById ('help');
@@ -161,3 +162,12 @@ elem_input.onkeyup=function(){
 	xhr.send();
 };
 elem_input.onkeyup();
+
+(function(){
+	const saved_width=localStorage.getItem ('main-width');
+	if (saved_width!=null)
+		elem_main.style.width=saved_width;
+})();
+elem_main.onmouseup=function(){
+	localStorage.setItem ('main-width',elem_main.style.width);
+};
