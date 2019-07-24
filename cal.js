@@ -26,6 +26,9 @@ function handle_click () {
 	switch (result_node.dataset.has_iframe) {
 		case 'no':
 			const iframe=document.createElement ('iframe');
+			iframe.onload=function(){
+				iframe.contentWindow.document.onkeydown=document.onkeydown;
+			};
 			iframe.src='/proxy/'+result_node.dataset.url;
 
 			if (result_node.nextSibling)
@@ -134,6 +137,13 @@ xhr.onreadystatechange=function(){
 	const response=JSON.parse (xhr.responseText);
 	handle_response (response);
 	cache.set (last_query,response);
+};
+
+document.onkeydown=function(e){
+	if (e.keyCode==191 && document.activeElement !== elem_input) { // forward slash
+		elem_input.focus();
+		e.preventDefault();
+	}
 };
 
 elem_input.onkeyup=function(){
