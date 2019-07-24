@@ -155,7 +155,6 @@ elem_input.onkeyup=function(){
 	xhr.abort();
 
 	if (cache.has (query)) {
-		console.log('cache',query);
 		handle_response (cache.get (query));
 		return;
 	}
