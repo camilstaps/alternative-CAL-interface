@@ -142,6 +142,7 @@ xhr.onreadystatechange=function(){
 document.onkeydown=function(e){
 	if (e.keyCode==191 && document.activeElement !== elem_input) { // forward slash
 		elem_input.focus();
+		elem_input.select();
 		e.preventDefault();
 	}
 };
