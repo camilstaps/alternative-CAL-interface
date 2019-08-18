@@ -6,6 +6,17 @@
 	font-family: 'Estrangelo Edessa';
 }
 
+kbd {
+	background: #fcfcfc;
+	border: 1px solid;
+	border-color: #ccc #ccc #bbb;
+	border-radius: 3px;
+	box-shadow: 0 -1px 0 #bbb inset;
+	display: inline-block;
+	padding: 3px 5px;
+	vertical-align: middle;
+}
+
 a#header {
 	color: #666;
 	font-size: 150%;
