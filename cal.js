@@ -20,6 +20,44 @@ elem_help_icon.onclick=function(){
 	}
 };
 
+function get_result_node (id) {
+	var elem;
+	for (var i=0; i<=id; i++) {
+		elem=elem_results.children[i];
+		if (!elem)
+			return null;
+		if (elem.tagName=='IFRAME')
+			id++;
+	}
+	return elem;
+}
+
+function change_selected_result (change) {
+	var sel=parseInt (elem_results.dataset.selected);
+
+	if (sel>=0)
+		get_result_node (sel).style.outline='none';
+
+	sel+=change;
+
+	if (sel<0)
+		sel=0;
+	else if (sel>=elem_results.children.length)
+		sel=elem_results.children.length-1;
+
+	var elem=get_result_node (sel);
+	elem.style.outline='1px dotted black';
+	elem.scrollIntoView ({behaviour: 'smooth', block: 'nearest'});
+	elem_results.dataset.selected=sel;
+}
+
+function toggle_selected_result() {
+	var sel=parseInt (elem_results.dataset.selected);
+	var elem=get_result_node (sel);
+	if (elem)
+		elem.onclick();
+}
+
 function handle_click () {
 	const result_node=this;
 
@@ -62,7 +100,7 @@ function handle_response(response) {
 
 	elem_error.style.display='none';
 
-	for (var i in response) {
+	for (var i=0; i<response.length; i++) {
 		const result=response[i];
 
 		const result_node=document.createElement ('div');
@@ -117,6 +155,8 @@ function handle_response(response) {
 
 		elem_results.appendChild (result_node);
 	}
+
+	elem_results.dataset.selected=-1;
 }
 
 const cache=new Map();
@@ -140,10 +180,27 @@ xhr.onreadystatechange=function(){
 };
 
 document.onkeydown=function(e){
-	if (e.keyCode==191 && document.activeElement !== elem_input) { // forward slash
-		elem_input.focus();
-		elem_input.select();
-		e.preventDefault();
+	if (document.activeElement === elem_input) {
+		if (e.keyCode==13) // Enter; remove focus
+			elem_input.blur();
+		return;
+	}
+
+	switch (e.keyCode) {
+		case 191: // forward slash: focus search field
+			elem_input.focus();
+			elem_input.select();
+			e.preventDefault();
+			break;
+		case 74: // j; move down
+			change_selected_result (1);
+			break;
+		case 75: // k; move up
+			change_selected_result (-1);
+			break;
+		case 79: // o; toggle result
+			toggle_selected_result();
+			break;
 	}
 };
 
