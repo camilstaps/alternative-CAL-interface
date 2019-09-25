@@ -181,9 +181,17 @@ xhr.onreadystatechange=function(){
 
 document.onkeydown=function(e){
 	if (document.activeElement === elem_input) {
-		if (e.keyCode==13) // Enter; remove focus
-			elem_input.blur();
-		return;
+		switch (e.keyCode) {
+			case 13: // Enter; remove focus
+				elem_input.blur();
+				return;
+			case 74: // j; move down
+				elem_input.blur();
+				e.preventDefault();
+				break;
+			default:
+				return;
+		}
 	}
 
 	switch (e.keyCode) {
