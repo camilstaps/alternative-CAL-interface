@@ -218,6 +218,9 @@ elem_input.onkeyup=function(){
 	if (query==last_query)
 		return;
 
+	if (!query.match(new RegExp('^'+elem_input.pattern+'$')))
+		return;
+
 	if (query.length<2) {
 		elem_results.innerHTML='';
 		elem_error.innerHTML='Please enter at least two letters.';
