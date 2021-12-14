@@ -1,5 +1,5 @@
 <?php
-define ('CAL_REQUEST_URL','http://cal.huc.edu/browseheaders.php');
+define ('CAL_REQUEST_URL','http://cal.huc.edu/browseSKEYheaders.php');
 
 $query=$_GET['q'];
 
@@ -17,14 +17,15 @@ $curl_response=curl_exec ($curl);
 
 // Split results (can't use XML parser yet because the HTML is very illegal)
 $curl_response=str_replace ('</tr>','',$curl_response);
-$curl_response=explode ('</table>',$curl_response)[0];
+$curl_response=explode ('</table>',$curl_response)[1];
 $curl_response=explode ('<tr>',$curl_response);
 array_shift ($curl_response);
 array_shift ($curl_response);
 
 // Build result objects
-foreach ($curl_response as $curl_result) {
-	$curl_result=DOMDocument::loadHTML ('<?xml encoding="utf-8"?>'.$curl_result);
+foreach ($curl_response as $curl_response_item) {
+	$curl_result=new DOMDocument();
+	$curl_result->loadHTML ('<?xml encoding="utf-8"?>'.$curl_response_item);
 
 	// URL from link
 	$url='';
