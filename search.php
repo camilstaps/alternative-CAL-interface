@@ -16,10 +16,11 @@ curl_setopt ($curl,CURLOPT_RETURNTRANSFER,true);
 $curl_response=curl_exec ($curl);
 
 // Split results (can't use XML parser yet because the HTML is very illegal)
-$curl_response=str_replace ('</tr>','',$curl_response);
+$curl_response=str_replace ('</td>','',$curl_response);
+$curl_response=str_replace ('</tr><tr>','',$curl_response);
 $curl_response=explode ('</table>',$curl_response)[1];
-$curl_response=explode ('<tr>',$curl_response);
-array_shift ($curl_response);
+$curl_response=explode ('<td>',$curl_response);
+
 array_shift ($curl_response);
 
 // Build result objects
