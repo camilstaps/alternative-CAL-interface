@@ -17,11 +17,24 @@ $curl_response=curl_exec ($curl);
 
 // Split results (can't use XML parser yet because the HTML is very illegal)
 $curl_response=str_replace ('</td>','',$curl_response);
-$curl_response=str_replace ('</tr><tr>','',$curl_response);
+$curl_response=str_replace ('</tr>','',$curl_response);
 $curl_response=explode ('</table>',$curl_response)[1];
-$curl_response=explode ('<td>',$curl_response);
+$curl_response=explode ('<tr>',$curl_response);
 
 array_shift ($curl_response);
+array_shift ($curl_response);
+
+$curl_response=array_map (
+	function ($row) {
+		$rows=explode ('<td>',$row);
+		array_shift ($rows);
+		return $rows;
+	},
+	$curl_response
+);
+$curl_response=array_map (null,...$curl_response); // transpose
+$curl_response=array_merge (...$curl_response); // flatten
+
 
 // Build result objects
 foreach ($curl_response as $curl_response_item) {
