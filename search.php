@@ -1,5 +1,5 @@
 <?php
-define ('CAL_REQUEST_URL','http://cal.huc.edu/browseSKEYheaders.php');
+define ('CAL_REQUEST_URL','https://cal.huc.edu/browseSKEYheaders.php');
 
 $query=$_GET['q'];
 
