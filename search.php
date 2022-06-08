@@ -32,9 +32,10 @@ $curl_response=array_map (
 	},
 	$curl_response
 );
-$curl_response=array_map (null,...$curl_response); // transpose
-$curl_response=array_merge (...$curl_response); // flatten
 
+if (count ($curl_response) > 1)
+	$curl_response=array_map (null,...$curl_response); // transpose
+$curl_response=array_merge (...$curl_response); // flatten
 
 // Build result objects
 foreach ($curl_response as $curl_response_item) {
