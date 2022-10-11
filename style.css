@@ -36,13 +36,13 @@ div#main {
 	width: 100%;
 }
 
-@media (min-width: 35em) {
+@media (min-width: 50em) {
 	div#main {
-		min-width: 30em;
+		min-width: 47.5em;
 		max-width: 95%;
 		overflow: auto;
 		resize: horizontal;
-		width: 35em;
+		width: 50em;
 	}
 }
 
